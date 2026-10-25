@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perkenalan Kelompok 7</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #10152f, #252d61, #6b36a6);
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 24px 18px 40px;
+  text-align: center;
+}
+
+.tag {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid #ffffff55;
+  background: #ffffff12;
+  border-radius: 30px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(30px, 7vw, 52px);
+  margin-bottom: 12px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #85f7ff, #e7a8ff);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.subtitle {
+  color: #d9ddff;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.camera-box {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto 22px;
+  padding: 10px;
+  border: 1px solid #ffffff45;
+  border-radius: 22px;
+  background: #ffffff12;
+  box-shadow: 0 15px 50px #00000035;
+}
+
+.camera-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 5px 12px;
+  font-size: 13px;
+  color: #dce3ff;
+}
+
+.status {
+  color: #ffce7b;
+}
+
+.video-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #090d20;
+  border-radius: 15px;
+  aspect-ratio: 4 / 3;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.camera-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #cdd4ff;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.camera-placeholder .emoji {
+  font-size: 55px;
+}
+
+.camera-placeholder.hidden {
+  display: none;
+}
+
+.camera-note {
+  color: #bfc8f5;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.presentation-card {
+  padding: 28px 18px;
+  margin: 22px auto;
+  max-width: 650px;
+  background: linear-gradient(145deg, #ffffff1a, #ffffff08);
+  border: 1px solid #ffffff35;
+  border-radius: 24px;
+  min-height: 235px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-label {
+  color: #aebaff;
+  letter-spacing: 3px;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.hand {
+  font-size: 76px;
+  margin-bottom: 15px;
+  animation: float 2s ease-in-out infinite;
+}
+
+#presentationText {
+  font-size: clamp(20px, 5vw, 29px);
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+#description {
+  color: #d7dcff;
+  font-size: 14px;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.progress {
+  height: 5px;
+  max-width: 650px;
+  background: #ffffff25;
+  border-radius: 10px;
+  margin: 0 auto 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #79f7ff, #d99bff);
+  transition: width .4s ease;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s, opacity .2s;
+}
+
+button:active {
+  transform: scale(.96);
+}
+
+.primary {
+  background: linear-gradient(90deg, #78efff, #c9a2ff);
+  color: #151532;
+}
+
+.secondary {
+  background: #ffffff18;
+  border: 1px solid #ffffff40;
+  color: white;
+}
+
+button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.members {
+  margin: 35px auto 20px;
+  text-align: left;
+}
+
+.members h2 {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.member {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #ffffff0d;
+  border: 1px solid #ffffff20;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: .3s;
+}
+
+.member.active {
+  border-color: #9defff;
+  background: #8ceeff18;
+}
+
+.member-symbol {
+  font-size: 35px;
+  min-width: 48px;
+  text-align: center;
+}
+
+.member-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.member-role {
+  font-size: 12px;
+  color: #c7ceff;
+}
+
+footer {
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff20;
+  color: #c5ccef;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 13px 30px;
+  }
+
+  .hand {
+    font-size: 65px;
+  }
+
+  button {
+    padding: 12px 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="tag">PRESENTASI KELOMPOK</div>
+
+  <h1>Halo, <span class="gradient-text">Semuanya!</span></h1>
+
+  <p class="subtitle">
+    Kami dari <b>Kelompok 7</b>.<br>
+    Mari berkenalan dengan cara yang seru dan berbeda!
+  </p>
+
+  <div class="camera-box">
+    <div class="camera-header">
+      <span>📷 KAMERA LANGSUNG</span>
+      <span class="status" id="cameraStatus">● Belum aktif</span>
+    </div>
+
+    <div class="video-wrap">
+      <video id="camera" autoplay playsinline muted></video>
+
+      <div class="camera-placeholder" id="placeholder">
+        <div class="emoji">📸</div>
+        <b>Kamera belum dinyalakan</b>
+        <span>Aktifkan kamera untuk menampilkan diri kalian saat presentasi.</span>
+      </div>
+    </div>
+
+    <p class="camera-note">
+      Kamera digunakan sebagai tampilan langsung, bukan untuk merekam video.
+    </p>
+  </div>
+
+  <div class="presentation-card">
+    <div class="step-label" id="stepLabel">PEMBUKAAN</div>
+
+    <div class="hand" id="hand">🖐🏻</div>
+
+    <div id="presentationText">
+      Halo semuanya!
+    </div>
+
+    <p id="description">
+      Perkenalkan, kami dari Kelompok 7.
+    </p>
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="buttons">
+    <button class="primary" id="cameraButton" onclick="toggleCamera()">
+      📷 Aktifkan Kamera
+    </button>
+
+    <button class="primary" id="startButton" onclick="startPresentation()">
+      ▶ Mulai Presentasi
+    </button>
+  </div>
+
+  <div class="buttons">
+    <button class="secondary" id="prevButton" onclick="changeStep(-1)" disabled>
+      ← Sebelumnya
+    </button>
+
+    <button class="secondary" id="nextButton" onclick="changeStep(1)">
+      Selanjutnya →
+    </button>
+
+    <button class="secondary" onclick="resetPresentation()">
+      ↺ Ulangi
+    </button>
+  </div>
+
+  <section class="members">
+    <h2>Anggota Kelompok 7</h2>
+
+    <div class="member active" id="member0">
+      <div class="member-symbol">🖐🏻</div>
+      <div>
+        <div class="member-name">Pembukaan Bersama</div>
+        <div class="member-role">Salam perkenalan</div>
+      </div>
+    </div>
+
+    <div class="member" id="member1">
+      <div class="member-symbol">☝🏻</div>
+      <div>
+        <div class="member-name">Adly Zaidan Zidna Fann</div>
+        <div class="member-role">Anggota pertama</div>
+      </div>
+    </div>
+
+    <div class="member" id="member2">
+      <div class="member-symbol">✌🏻</div>
+      <div>
+        <div class="member-name">Fitria Nuraini</div>
+        <div class="member-role">Anggota kedua</div>
+      </div>
+    </div>
+
+    <div class="member" id="member3">
+      <div class="member-symbol">👌🏻</div>
+      <div>
+        <div class="member-name">Eka Anisa</div>
+        <div class="member-role">Anggota ketiga</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <b>KELOMPOK 7</b><br>
+    Kreatif • Kompak • Percaya Diri<br>
+    © 2026 — Presentasi Perkenalan
+  </footer>
+
+</div>
+
+<script>
+const steps = [
+  {
+    symbol: "🖐🏻",
+    label: "PEMBUKAAN",
+    text: "Halo semuanya!",
+    desc: "Perkenalkan, kami dari Kelompok 7."
+  },
+  {
+    symbol: "☝🏻",
+    label: "ANGGOTA PERTAMA",
+    text: "Saya Adly Zaidan Zidna Fann.",
+    desc: "Salam kenal semuanya!"
+  },
+  {
+    symbol: "✌🏻",
+    label: "ANGGOTA KEDUA",
+    text: "Saya Fitria Nuraini.",
+    desc: "Senang bisa berkenalan dengan kalian!"
+  },
+  {
+    symbol: "👌🏻",
+    label: "ANGGOTA KETIGA",
+    text: "Dan saya Eka Anisa.",
+    desc: "Salam kenal dari kami, Kelompok 7!"
+  }
+];
+
+let currentStep = 0;
+let cameraStream = null;
+let running = false;
+
+const video = document.getElementById("camera");
+const placeholder = document.getElementById("placeholder");
+const cameraStatus = document.getElementById("cameraStatus");
+const cameraButton = document.getElementById("cameraButton");
+
+function showStep(index) {
+  currentStep = Math.max(0, Math.min(index, steps.length - 1));
+
+  const step = steps[currentStep];
+
+  document.getElementById("hand").textContent = step.symbol;
+  document.getElementById("stepLabel").textContent = step.label;
+  document.getElementById("presentationText").textContent = step.text;
+  document.getElementById("description").textContent = step.desc;
+
+  document.getElementById("progressBar").style.width =
+    ((currentStep + 1) / steps.length * 100) + "%";
+
+  document.getElementById("prevButton").disabled = currentStep === 0;
+  document.getElementById("nextButton").disabled =
+    currentStep === steps.length - 1;
+
+  for (let i = 0; i < steps.length; i++) {
+    document.getElementById("member" + i)
+      .classList.toggle("active", i === currentStep);
+  }
+}
+
+function changeStep(direction) {
+  running = false;
+  showStep(currentStep + direction);
+  document.getElementById("startButton").textContent =
+    currentStep === steps.length - 1
+      ? "▶ Mulai Lagi"
+      : "▶ Lanjutkan Presentasi";
+}
+
+async function toggleCamera() {
+  if (cameraStream) {
+    cameraStream.getTracks().forEach(track => track.stop());
+    cameraStream = null;
+    video.srcObject = null;
+    placeholder.classList.remove("hidden");
+    cameraStatus.textContent = "● Belum aktif";
+    cameraButton.textContent = "📷 Aktifkan Kamera";
+    return;
+  }
+
+  if (!navigator.mediaDevices ||
+      !navigator.mediaDevices.getUserMedia) {
+    alert(
+      "Kamera tidak tersedia. Buka website melalui HTTPS " +
+      "atau localhost, lalu coba lagi."
+    );
+    return;
+  }
+
+  try {
+    cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: "user"
+      },
+      audio: false
+    });
+
+    video.srcObject = cameraStream;
+    placeholder.classList.add("hidden");
+    cameraStatus.textContent = "● Kamera aktif";
+    cameraButton.textContent = "⏹ Matikan Kamera";
+  } catch (error) {
+    alert(
+      "Kamera gagal dibuka. Izinkan akses kamera di browser " +
+      "dan pastikan kamera tidak sedang digunakan aplikasi lain."
+    );
+  }
+}
+
+function startPresentation() {
+  if (running) {
+    running = false;
+    document.getElementById("startButton").textContent =
+      "▶ Lanjutkan Presentasi";
+    return;
+  }
+
+  if (currentStep === steps.length - 1) {
+    showStep(0);
+  }
+
+  running = true;
+  document.getElementById("startButton").textContent =
+    "⏸ Jeda Presentasi";
+
+  advancePresentation();
+}
+
+function advancePresentation() {
+  if (!running) return;
+
+  if (currentStep >= steps.length - 1) {
+    running = false;
+    document.getElementById("startButton").textContent =
+      "✓ Presentasi Selesai";
+    return;
+  }
+
+  showStep(currentStep);
+
+  // Beri waktu untuk mengucapkan setiap bagian.
+  window.setTimeout(() => {
+    if (!running) return;
+    showStep(currentStep + 1);
+    window.setTimeout(advancePresentation, 4000);
+  }, 4000);
+}
+
+function resetPresentation() {
+  running = false;
+  showStep(0);
+  document.getElementById("startButton").textContent =
+    "▶ Mulai Presentasi";
+}
+
+showStep(0);
+</script>
+</body>
+</html>
